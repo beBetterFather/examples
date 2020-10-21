@@ -1,5 +1,6 @@
 package com.jsw.mult.config;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,27 +15,27 @@ import javax.sql.DataSource;
 public class DBConfig {
 
     @Bean
-    @Primary
-    @ConfigurationProperties(prefix = "spring.db_order")
+    @ConfigurationProperties(prefix = "spring.db-order")
     public DataSourceProperties useDataSourceProperties(){
         return new DataSourceProperties();
     }
 
     @Bean("orderDB")
-    @Primary
     public DataSource orderDataSource(){
-        return useDataSourceProperties().initializeDataSourceBuilder().build();
+        return useDataSourceProperties().initializeDataSourceBuilder().type(DruidDataSource.class).build();
     }
 
     @Bean
-    @ConfigurationProperties(prefix = "spring.db_customer")
+    @Primary
+    @ConfigurationProperties(prefix = "spring.db-customer")
     public DataSourceProperties customerDataSourceProperties(){
         return new DataSourceProperties();
     }
 
     @Bean("customerDB")
+    @Primary
     public DataSource customerDataSource(){
-        return customerDataSourceProperties().initializeDataSourceBuilder().build();
+        return customerDataSourceProperties().initializeDataSourceBuilder().type(DruidDataSource.class).build();
     }
 
     @Bean("orderTemplate")

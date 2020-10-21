@@ -10,6 +10,8 @@ public class Order {
 
     private Integer amount;
 
+    private String error;
+
     public Long getId() {
         return id;
     }
@@ -40,5 +42,13 @@ public class Order {
 
     public void setAmount(Integer amount) {
         this.amount = amount;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }
