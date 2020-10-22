@@ -34,6 +34,7 @@ public class OrderService {
 
         error(order.getError());
 
+
         orderJdbcTemplate.update(ORDER_INSERT, order.getCustomerId(), order.getTitle(), order.getAmount());
 
         error(order.getError());
@@ -53,12 +54,12 @@ public class OrderService {
         }
     }
 
-    private void error1() throws Exception {
-        throw new Exception();
+    private void error1()  {
+        throw new RuntimeException();
     }
 
     private void error2() throws Exception {
-        throw new Exception();
+        throw new RuntimeException();
     }
 
 }
